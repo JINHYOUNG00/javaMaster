@@ -69,13 +69,14 @@ public class MemberDAO {
 				psmt = conn.prepareStatement(sql);
 				psmt.setInt(1, memberId);
 				
-				psmt.executeQuery();
+				rs = psmt.executeQuery();
 				if(rs.next()) {
 				member.setMemberId(rs.getInt("member_id"));
 				member.setMemberName(rs.getString("member_name"));
 				member.setTel(rs.getString("tel"));
 				member.setMemberBday(rs.getString("member_bday"));
 				member.setGender(rs.getString("gender"));
+				member.setEmail(rs.getString("email"));
 				}
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
@@ -86,7 +87,7 @@ public class MemberDAO {
 	
 	public boolean insertMember(Member member) {
 		getConn();
-		String sql = "insert into member(member_id, member_name, tel, member_bday, gender) "
+		String sql = "insert into member(member_id, member_name, tel, member_bday, gender, email) "
 					+ "values(member_seq.nextval, ?, ?, ?, ?, ?)";
 		try {
 			psmt = conn.prepareStatement(sql);
@@ -94,6 +95,7 @@ public class MemberDAO {
 			psmt.setString(2, member.getTel());
 			psmt.setString(3, member.getMemberBday());
 			psmt.setString(4, member.getGender());
+			psmt.setString(5, member.getEmail());
 			int r = psmt.executeUpdate();
 			
 			if(r>0) {

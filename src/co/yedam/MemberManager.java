@@ -28,19 +28,22 @@ public class MemberManager {
 				} 
 				case 2: {
 					Member member = new Member();
-					System.out.println("회원명>>");
+					System.out.print("회원명>>");
 					String name = scn.nextLine();
-					System.out.println("연락처>>");
+					System.out.print("연락처>>");
 					String tel = scn.nextLine();
-					System.out.println("생일>>");
+					System.out.print("생일>>");
 					String birthday = scn.nextLine();
-					System.out.println("성별>>");
+					System.out.print("성별>>");
 					String gender = scn.nextLine();
+					System.out.print("이메일>>");
+					String email = scn.nextLine();
 					
 					member.setMemberName(name);
 					member.setTel(tel);
 					member.setMemberBday(birthday);
 					member.setGender(gender);
+					member.setEmail(email);
 					
 					if(dao.insertMember(member)) {
 						System.out.println("정상입력");
@@ -80,7 +83,7 @@ public class MemberManager {
 				case 5: {
 					System.out.println("조회할 회원번호>>");
 					int memberId = Integer.parseInt(scn.nextLine());
-					dao.showDetail(memberId);
+					System.out.println(dao.showDetail(memberId)); 
 					
 					
 					break;
